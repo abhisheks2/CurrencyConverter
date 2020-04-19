@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ConversionLog>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @item.FromCurrency
+        </td>
+        <td>
+            @item.FromAmount
+        </td>
+        <td>
+            @item.ToCurrency
+        </td>
+        <td>
+            @item.ToAmount
+        </td>
+        <td>
+            @item.RateApplied
+        </td>
+        <td>
+            @item.ConversionDate
+        </td>
+    </tr>
+}

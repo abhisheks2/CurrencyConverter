@@ -1,0 +1,53 @@
+﻿@page "{handler?}"
+
+@model CurrencyConverter.ConversionHistoryModel
+
+<div class="row m-3">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header text-center bg-primary">
+                <form method="post">
+                    <b>From:</b> <input asp-for="FromDate" type="date" id="searchFromDate" class="col-sm-3 m-2" />
+                    <b>To:</b> <input asp-for="ToDate" type="date" id="searchToDate" class="col-sm-3 m-2" />
+                    <button type="submit" class="btn btn-success col-sm-2 m-2">Search</button>
+                    <button type="button" id="btnSearch" class="btn btn-danger col-sm-2 m-2">Search AJAX</button>
+                    <span id="spanErrorMsg" class="row col-sm-5 text-danger font-weight-bolder ml-4">@ViewData["ErrorMessage"]</span>
+                </form>
+            </div>
+            <div class="card-body">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                From Currency
+                            </th>
+                            <th>
+                                From Amount
+                            </th>
+                            <th>
+                                To Currency
+                            </th>
+                            <th>
+                                To Amount
+                            </th>
+                            <th>
+                                Conversion Rate
+                            </th>
+                            <th>
+                                Conversion Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="result">
+                        <partial name="_conversionList" model="@Model.Conversions" />
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}
