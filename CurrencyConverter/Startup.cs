@@ -25,16 +25,16 @@ namespace CurrencyConverter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DBCS"));
-            });
+            //services.AddDbContextPool<AppDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("DBCS"));
+            //});
 
             //Use SQL repository for currency conversion audit log/history
-            services.AddScoped<IConversionRepository, SqlConversionRepository>();
+            //services.AddScoped<IConversionRepository, SqlConversionRepository>();
 
             //Using InMemory repository for currency conversion audit log/history
-            //services.AddSingleton<IConversionRepository, InMemoryConversionRepository>();
+            services.AddSingleton<IConversionRepository, InMemoryConversionRepository>();
             
             services.AddRazorPages();
         }
@@ -42,11 +42,11 @@ namespace CurrencyConverter
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
-                context.Database.Migrate();
-            }
+            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+            //    context.Database.Migrate();
+            //}
 
             if (env.IsDevelopment())
             {
