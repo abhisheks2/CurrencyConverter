@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CurrencyConverter.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200419124709_AddTableCurrenyConversionRate")]
-    partial class AddTableCurrenyConversionRate
+    [Migration("20200422121532_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
